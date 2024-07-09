@@ -1,4 +1,7 @@
-# 📝 Note Taking Web Application
+
+<h1 align="center">⚡HyperNote⚡</h1><br><br>
+
+## 🚀 Welcome to the 📝 Note Taking Web Application !
 
 Welcome to the Note Taking web application, a modern and efficient tool to manage your notes with ease. This project is built using Java, JSP, Servlet, Hibernate with JPA, MySQL, SQL, HTML, Bootstrap, Maven, and Apache Tomcat.
 
