@@ -12,7 +12,8 @@
   </head>
   <body class="bg-dark text-white">
   <% int id = (int) session.getAttribute("userId");
-	User user = UserDao.fetchUserById(id);
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserById(id);
 	if(user==null){
 		response.sendRedirect("login.jsp");
 	}else{
@@ -20,7 +21,7 @@
     <%@ include file="components/homenav.jsp"%>
 
      <% 
-     User u= UserDao.fetchUserById(id);
+     User u= userDao.fetchUserById(id);
 %>
           <div class="container-fluid p-3">
         <div class="row">

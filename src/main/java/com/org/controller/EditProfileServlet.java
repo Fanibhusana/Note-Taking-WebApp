@@ -18,7 +18,8 @@ public class EditProfileServlet extends HttpServlet{
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	HttpSession session = req.getSession();
 	int id = (int) session.getAttribute("userId");
-	User user = UserDao.fetchUserById(id);	
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserById(id);	
 	user.setName(req.getParameter("name"));
 	user.setEmail(req.getParameter("email"));
 	user.setAge(Integer.parseInt(req.getParameter("age")));
@@ -26,7 +27,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	user.setNotes(user.getNotes());
 	Notes notes=new Notes();
 	notes.setUser(user);
-	UserDao.saveAndUpdateUser(user);
+	userDao.saveAndUpdateUser(user);
 	session.setAttribute("message", "Profile Edit Successfully");
 	resp.sendRedirect("editprofile.jsp");
 }

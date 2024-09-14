@@ -15,8 +15,8 @@
   </head>
   <body class="bg-dark text-white">
   <% 
-
-	User user = UserDao.fetchUserById((int)session.getAttribute("userId"));
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserById((int)session.getAttribute("userId"));
 	if(user==null){
 		response.sendRedirect("login.jsp");
 	}else{
@@ -31,8 +31,8 @@
 	 <% 
 	 session.removeAttribute("message");
 						    }
-
-	List<Notes> list= NotesDao.fetchNotesByUserId((int)session.getAttribute("userId"));
+	NotesDao notesDao=new NotesDao();
+	List<Notes> list= notesDao.fetchNotesByUserId((int)session.getAttribute("userId"));
 
 	%>
 

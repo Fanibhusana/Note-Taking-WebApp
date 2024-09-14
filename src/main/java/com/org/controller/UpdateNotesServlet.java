@@ -25,13 +25,14 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 		
 		HttpSession session = req.getSession();
 		int id = (int) session.getAttribute("userId");
-		User user = UserDao.fetchUserById(id);
+		UserDao userDao = new UserDao();
+		User user = userDao.fetchUserById(id);
 		List<Notes> list=new ArrayList<Notes>();
 		list.add(note);		
 		user.setNotes(list);
 		note.setUser(user);
 		
-		UserDao.saveAndUpdateUser(user);
+		userDao.saveAndUpdateUser(user);
 		
 		session.setAttribute("message", "Update Notes Successful");
 		resp.sendRedirect("home.jsp");

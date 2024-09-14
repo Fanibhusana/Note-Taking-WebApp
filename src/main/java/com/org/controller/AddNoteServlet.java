@@ -27,12 +27,13 @@ public class AddNoteServlet extends HttpServlet{
 		HttpSession session = req.getSession();
 		//User user = (User) session.getAttribute("userObj");
 		int id = (int) session.getAttribute("userId");
-		User user = UserDao.fetchUserById(id);
+		UserDao userDao = new UserDao();
+		User user = userDao.fetchUserById(id);
 		List<Notes> list=new ArrayList<Notes>();
 		list.add(notes);
 		user.setNotes(list);
 		notes.setUser(user);
-		UserDao.saveAndUpdateUser(user);
+		userDao.saveAndUpdateUser(user);
 		session.setAttribute("message", "Notes added successfully");
 		session.setAttribute("userId",user.getId());
 		resp.sendRedirect("home.jsp");

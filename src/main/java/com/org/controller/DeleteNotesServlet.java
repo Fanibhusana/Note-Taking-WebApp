@@ -20,11 +20,13 @@ protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws Se
 	
 	HttpSession session = req.getSession(false);
 	int userid = (int) session.getAttribute("userId");
-	User user = UserDao.fetchUserById(userid);
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserById(userid);
 	if(user==null) {
 		resp.sendRedirect("login.jsp");
 	}else {
-		 NotesDao.deleteNotesById(id);
+		 NotesDao notesDao = new NotesDao();
+		 notesDao.deleteNotesById(id);
 		session.setAttribute("message", "Delete successfully");
 		resp.sendRedirect("home.jsp");
 	}

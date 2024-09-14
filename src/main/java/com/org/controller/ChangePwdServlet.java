@@ -18,7 +18,8 @@ public class ChangePwdServlet extends HttpServlet{
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	HttpSession session = req.getSession();
 	int id = (int) session.getAttribute("userId");
-	User user = UserDao.fetchUserById(id);	
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserById(id);	
 	String currentpwd = req.getParameter("currentpwd");
 	String newpwd = req.getParameter("newpwd");
 	String confompwd = req.getParameter("confompwd");
@@ -27,7 +28,7 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 			 user.setPassword(confompwd);
 			 user.setNotes(user.getNotes());
 			 new Notes().setUser(user);
-			  UserDao.saveAndUpdateUser(user);
+			  userDao.saveAndUpdateUser(user);
 			 
 			 session.setAttribute("message", "Password is changed");
 				resp.sendRedirect("changepwd.jsp");

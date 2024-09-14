@@ -8,12 +8,12 @@ import com.org.dto.Notes;
 import com.org.dto.User;
 
 public class NotesDao {
-	static	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Fani");  
-	static  EntityManager eManager =entityManagerFactory.createEntityManager();
-	static	EntityTransaction entityTransaction=eManager.getTransaction();  
+		EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("Fani");  
+	    EntityManager eManager =entityManagerFactory.createEntityManager();
+		EntityTransaction entityTransaction=eManager.getTransaction();  
 
 	
-	public static Notes fetchNoteById(int id) {
+	public  Notes fetchNoteById(int id) {
 		 Notes notes = eManager.find(Notes.class, id);
 		 System.out.println(notes.getDescription());
 		 return notes;
@@ -21,7 +21,7 @@ public class NotesDao {
 		}
 
 	
-	public static void deleteNotesById(int id)
+	public  void deleteNotesById(int id)
 	{
 		Notes notes = eManager.find(Notes.class, id);
 		
@@ -42,7 +42,7 @@ public class NotesDao {
 		eManager.remove(notes);
 		entityTransaction.commit();
 	}
-	public static List<Notes> fetchNotesByUserId(int id){
+	public  List<Notes> fetchNotesByUserId(int id){
 		
 		Query query = eManager.createQuery("SELECT s FROM Notes s WHERE user_id=?1");
 		query.setParameter(1, id);

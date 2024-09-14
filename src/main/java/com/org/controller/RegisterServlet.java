@@ -21,8 +21,8 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	user.setEmail(req.getParameter("email"));
 	user.setMobile(Long.parseLong(req.getParameter("mobile")));
 	user.setPassword(req.getParameter("password"));
-	
-	UserDao.saveAndUpdateUser(user);
+	UserDao userDao = new UserDao();
+	userDao.saveAndUpdateUser(user);
 	HttpSession session = req.getSession();
 	session.setAttribute("message", "Registration successfull");
 	resp.sendRedirect("register.jsp");

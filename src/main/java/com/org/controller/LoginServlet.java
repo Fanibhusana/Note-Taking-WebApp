@@ -15,7 +15,8 @@ import com.org.dto.User;
 public class LoginServlet extends HttpServlet{
 @Override
 protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	User user = UserDao.fetchUserByEmailAndPassword(req.getParameter("email"),req.getParameter("password"));
+	UserDao userDao = new UserDao();
+	User user = userDao.fetchUserByEmailAndPassword(req.getParameter("email"),req.getParameter("password"));
 	HttpSession session = req.getSession();
 	if(user!=null) {
 		

@@ -14,8 +14,9 @@
   </head>
   <body class="bg-dark text-white">
   <%  int id = (int) session.getAttribute("userId");
+	UserDao userDao = new UserDao();
 
-	User user = UserDao.fetchUserById(id);
+	User user = userDao.fetchUserById(id);
 	if(user==null){
 		response.sendRedirect("login.jsp");
 	}else{
@@ -23,7 +24,8 @@
     <%@ include file="components/homenav.jsp"%>
 
        <% int noteid=Integer.parseInt(request.getParameter("id"));
-   Notes notes= NotesDao.fetchNoteById(noteid);
+       NotesDao notesDao= new NotesDao();
+   Notes notes= notesDao.fetchNoteById(noteid);
        System.out.println(notes.getDescription());
   %>
       <div class="container p-5">
